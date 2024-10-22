@@ -81,6 +81,8 @@ public class BottleCapController : MonoBehaviour
 
         //x * 힘만큼 앞으로 이동
         rigd.AddForce(vec * power * -1);
+        isTrigger = true;
+        arrow.gameObject.SetActive(false);
     }
 
 }
