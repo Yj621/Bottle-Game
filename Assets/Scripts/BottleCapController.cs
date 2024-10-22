@@ -84,5 +84,13 @@ public class BottleCapController : MonoBehaviour
         isTrigger = true;
         arrow.gameObject.SetActive(false);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("test");
+        if (other.gameObject.CompareTag("Line"))
+        {
+            Debug.Log("Line");
+        }
+    }
 
 }
