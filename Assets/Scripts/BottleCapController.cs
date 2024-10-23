@@ -5,7 +5,7 @@ using UnityEngine;
 public class BottleCapController : MonoBehaviour
 {
     public Rigidbody rigd;
-    public Camera cam;
+    private Camera cam;
     public GameObject arrow;
 
     private Vector3 dragStartPos;
@@ -21,6 +21,7 @@ public class BottleCapController : MonoBehaviour
 
     private void Start()
     {
+        cam = Camera.main;
     }
 
     void Update()
@@ -70,6 +71,10 @@ public class BottleCapController : MonoBehaviour
                 Shoot();
             }
         }
+        if(isTrigger)
+        {
+            GetComponent<BottleCapController>().enabled = false;
+        }
     }
 
     void Shoot()
@@ -83,14 +88,21 @@ public class BottleCapController : MonoBehaviour
         rigd.AddForce(vec * power * -1);
         isTrigger = true;
         arrow.gameObject.SetActive(false);
+        Gamemanager.instance.CreateBottle();
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("test");
         if (other.gameObject.CompareTag("Line"))
         {
             Debug.Log("Line");
         }
     }
+    private void OnCollisionEnter(Collision other)
+    {
 
+        if (other.gameObject.CompareTag("Plane"))
+        {
+            Debug.Log("Plane");
+        }
+    }
 }
