@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] hp_img;
+    private int currentHpIndex;
+
+    public static UIController instance;
+    private static UIController Instance
+    {
+        get { return instance; }
+    }
     void Start()
     {
-        
+        currentHpIndex = hp_img.Length-1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+    public void DecreaseHp()
+    {
+        if(currentHpIndex >=0)
+        {
+            hp_img[currentHpIndex].SetActive(false);
+            currentHpIndex--;
+        }
     }
 }

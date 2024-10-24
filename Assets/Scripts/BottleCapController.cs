@@ -89,6 +89,7 @@ public class BottleCapController : MonoBehaviour
         isTrigger = true;
         arrow.gameObject.SetActive(false);
         Gamemanager.instance.CreateBottle();
+        UIController.instance.DecreaseHp();
     }
     private void OnTriggerEnter(Collider other)
     {
