@@ -10,6 +10,11 @@ public class Gamemanager : MonoBehaviour
     {
         get { return instance; }
     }
+
+    public GameObject[] hp_img;
+    public int hp = 3;
+    private int currentHpIndex;
+
     private void Awake()
     {
         instance = this;
@@ -17,7 +22,8 @@ public class Gamemanager : MonoBehaviour
 
     void Start()
     {
-            
+        currentHpIndex = hp_img.Length - 1;
+        CreateBottle();
     }
 
     void Update()
@@ -28,5 +34,16 @@ public class Gamemanager : MonoBehaviour
     public void CreateBottle()
     {
         Instantiate(bottlePrefab, new Vector3(4.3f, 0.88f, 0.31f), Quaternion.Euler(-90, 0, 0));
+        Debug.Log("CREATE");
     }
+    public void DecreaseHp()
+    {
+        if (currentHpIndex >= 0)
+        {
+            hp_img[currentHpIndex].SetActive(false);
+            currentHpIndex--;
+            hp--;
+        }
+    }
+
 }

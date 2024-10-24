@@ -26,7 +26,7 @@ public class BottleCapController : MonoBehaviour
 
     void Update()
     {
-        if (!isTrigger)
+        if (!isTrigger && Gamemanager.instance.hp > 0)
         {
             //마우스 누르기 시작했을때
             //Start Pos 반환
@@ -63,15 +63,26 @@ public class BottleCapController : MonoBehaviour
 
             //마우스를 뗐을때
             //End Pos 반환
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && Gamemanager.instance.hp > 0)
             {
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = cam.WorldToScreenPoint(transform.position).z;
                 dragEndPos = cam.ScreenToWorldPoint(mousePos);
+
+
                 Shoot();
+                Gamemanager.instance.DecreaseHp();
+
+                // DecreaseHp() 호출 후 hp를 다시 체크
+                if (Gamemanager.instance.hp > 0)
+                {
+                    Gamemanager.instance.CreateBottle();
+                }
+
+
             }
         }
-        if(isTrigger)
+        if (isTrigger)
         {
             GetComponent<BottleCapController>().enabled = false;
         }
@@ -87,15 +98,15 @@ public class BottleCapController : MonoBehaviour
         //x * 힘만큼 앞으로 이동
         rigd.AddForce(vec * power * -1);
         isTrigger = true;
+
+        //한 번 날리면 화살표 안 보이게
         arrow.gameObject.SetActive(false);
-        Gamemanager.instance.CreateBottle();
-        UIController.instance.DecreaseHp();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Line"))
+        if (other.gameObject.CompareTag("Line") && Gamemanager.instance.hp == 0)
         {
-            Debug.Log("Line");
+            Debug.Log("CLEAR");
         }
     }
     private void OnCollisionEnter(Collision other)
@@ -103,7 +114,6 @@ public class BottleCapController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Plane"))
         {
-            Debug.Log("Plane");
         }
     }
 }
