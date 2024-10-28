@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigd: {fileID: 163187539502194127}
   arrow: {fileID: 8704933703191670664}
+  panel: {fileID: 8437840253183730130, guid: 1f67ab1aba57afc47b08ca46612f5b23, type: 3}
   power: 5
   arrowMinHeight: 150
   arrowMaxHeight: 300

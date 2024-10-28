@@ -18,6 +18,8 @@ public class BottleCapController : MonoBehaviour
     public float arrowMaxHeight = 300f;
 
     public bool isTrigger;
+    
+    bool isStay = false;
 
     private void Start()
     {
@@ -102,18 +104,40 @@ public class BottleCapController : MonoBehaviour
         //한 번 날리면 화살표 안 보이게
         arrow.gameObject.SetActive(false);
     }
-    private void OnTriggerStay(Collider other)
+/*    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Line") && Gamemanager.instance.hp == 0)
         {
-            Debug.Log("CLEAR");
+            
+        }
+    }*/
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Line"))
+        {
+            isStay = false;
         }
     }
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Line"))
+        {
+            isStay = true;
+            Invoke("Test", 3f);
+        }
+    }
+    public void Test()
+    {
+        if(isStay == true)
+        {
+            Debug.Log("Clear");
+        }
+    }
+    /*private void OnCollisionEnter(Collision other)
     {
 
         if (other.gameObject.CompareTag("Plane"))
         {
         }
-    }
+    }*/
 }
