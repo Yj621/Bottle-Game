@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Line
   - Plane
+  - Selection
+  - Bottle
   layers:
   - Default
   - TransparentFX

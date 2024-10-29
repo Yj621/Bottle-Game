@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3158459036277940871}
   m_Layer: 0
   m_Name: BottleCap
-  m_TagString: Untagged
+  m_TagString: Bottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,8 +117,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3910217200847153033}
   serializedVersion: 4
-  m_Mass: 0.003
-  m_Drag: 1
+  m_Mass: 0.001
+  m_Drag: 0.01
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -148,13 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d579cbcfb9765a64abdd242f7d499cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigd: {fileID: 163187539502194127}
-  arrow: {fileID: 8704933703191670664}
-  panel: {fileID: 8437840253183730130, guid: 1f67ab1aba57afc47b08ca46612f5b23, type: 3}
   power: 5
-  arrowMinHeight: 150
-  arrowMaxHeight: 300
-  isTrigger: 0
+  isCreate: 0
 --- !u!1 &4807066150815739533
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,13 +547,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1369294814793636171, guid: 1286ede13b8cea841b6135b487b2d81e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8319233855039675671}
   m_SourcePrefab: {fileID: 100100000, guid: 1286ede13b8cea841b6135b487b2d81e, type: 3}
 --- !u!1 &8704933703191670664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1369294815335718665, guid: 1286ede13b8cea841b6135b487b2d81e, type: 3}
   m_PrefabInstance: {fileID: 7768310733259812993}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8704933703731718602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1369294814793636171, guid: 1286ede13b8cea841b6135b487b2d81e, type: 3}
+  m_PrefabInstance: {fileID: 7768310733259812993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8319233855039675671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704933703731718602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d5cd5c491a9314e8c103a1d67002bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigd: {fileID: 163187539502194127}
+  arrow: {fileID: 8704933703191670664}
+  canvas: {fileID: 4807066150815739533}
+  power: 10
+  arrowMinHeight: 150
+  arrowMaxHeight: 300
+  isTrigger: 0
+  bottleScript: {fileID: 3910217200847153033}
 --- !u!224 &8704933703731718605 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1369294814793636172, guid: 1286ede13b8cea841b6135b487b2d81e, type: 3}
