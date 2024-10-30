@@ -20,7 +20,7 @@ public class DragArrow : MonoBehaviour
     public float arrowMaxHeight = 300f;
 
     public bool isTrigger;
-    [SerializeField]private GameObject bottleScript;
+    [SerializeField] private GameObject bottleScript;
 
     void Start()
     {
@@ -79,14 +79,19 @@ public class DragArrow : MonoBehaviour
                 // DecreaseHp() 호출 후 hp를 다시 체크
                 if (Gamemanager.instance.hp > 0)
                 {
-                    Gamemanager.instance.CreateBottle();
+                    Invoke("Create", 5f);
                 }
             }
         }
     }
+    void Create()
+    {
+        Gamemanager.instance.CreateBottle();
+    }
 
     void Shoot()
     {
+        //CameraController.instance.FollowCamera();
         bottleScript.GetComponent<BottleCapController>().isCreate = true;
         //드래그한 값을 빼서 넣어줌
         Vector3 dragVector = dragEndPos - dragStartPos;

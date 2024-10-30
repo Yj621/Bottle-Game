@@ -7,7 +7,7 @@ public class BottleCapController : MonoBehaviour
 {
     public float power = 10f;
     Rigidbody rigidbody;
-    
+
     bool isStay = false;
     public bool isCreate = false;
 
@@ -19,10 +19,10 @@ public class BottleCapController : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Line"))
@@ -35,7 +35,12 @@ public class BottleCapController : MonoBehaviour
         if (other.gameObject.CompareTag("Line"))
         {
             isStay = true;
-            Invoke("Clear", 3f);
+            Invoke("Clear", 1f);
+        }
+        if (!other.gameObject.CompareTag("Line") && Gamemanager.instance.hp <= 0)
+        {
+            Debug.Log("Fail");
+            Invoke("Fail", 1f);
         }
 
         if (other.gameObject.CompareTag("Selection"))
@@ -51,7 +56,7 @@ public class BottleCapController : MonoBehaviour
             if (selectText.text == "+¼Óµµ")
             {
                 Vector3 direction = rigidbody.velocity;
-                
+
                 //¾ÕÀ¸·Î ÈûÀ» ÁÜ
                 rigidbody.AddForce(direction.normalized * 0.1f);
 
@@ -68,9 +73,13 @@ public class BottleCapController : MonoBehaviour
     }
     public void Clear()
     {
-        if(isStay == true)
+        if (isStay == true)
         {
-            Debug.Log("Clear");
+            EndScript.instance.OnWinPanel();
         }
+    }
+    public void Fail()
+    {
+        EndScript.instance.OnLosePanel();
     }
 }
