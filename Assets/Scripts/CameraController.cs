@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour
     }
     void Start()
     {
-        
     }
 
     void Update()
@@ -26,9 +25,9 @@ public class CameraController : MonoBehaviour
         
     }
 
-    public void FollowCamera()
+    public void FollowCamera(Transform bottle)
     {
-        transform.SetParent(bottleCap);
+        transform.SetParent(bottle);
     }
     public void ReturnCamera()
     {

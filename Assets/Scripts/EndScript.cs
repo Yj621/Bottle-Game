@@ -31,11 +31,11 @@ public class EndScript : MonoBehaviour
     }
     public void OnLosePanel()
     {
-        RankPanel.SetActive(true);
+        LosePanel.SetActive(true);
     }
     public void OnWinPanel()
     {
-        RankPanel.SetActive(true);
+        WinPanel.SetActive(true);
     }
 
 
@@ -45,10 +45,10 @@ public class EndScript : MonoBehaviour
     }
     public void OffLosePanel()
     {
-        RankPanel.SetActive(false);
+        LosePanel.SetActive(false);
     }
     public void OffWinPanel()
     {
-        RankPanel.SetActive(false);
+        WinPanel.SetActive(false);
     }
 }

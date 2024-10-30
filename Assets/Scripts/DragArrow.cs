@@ -19,8 +19,7 @@ public class DragArrow : MonoBehaviour
     public float arrowMinHeight = 150f;
     public float arrowMaxHeight = 300f;
 
-    public bool isTrigger;
-    [SerializeField] private GameObject bottleScript;
+    [SerializeField] private GameObject bottle;
 
     void Start()
     {
@@ -29,7 +28,7 @@ public class DragArrow : MonoBehaviour
 
     void Update()
     {
-        if (!isTrigger && Gamemanager.instance.hp > 0)
+        if (Gamemanager.instance.hp > 0)
         {
             //마우스 누르기 시작했을때
             //Start Pos 반환
@@ -79,7 +78,9 @@ public class DragArrow : MonoBehaviour
                 // DecreaseHp() 호출 후 hp를 다시 체크
                 if (Gamemanager.instance.hp > 0)
                 {
-                    Invoke("Create", 5f);
+                    //쏘고 나서 병뚜껑이 안 움직일때 다음 병뚜껑 생성
+                    //(아직 안 함)
+                    Invoke("Create", 3f);
                 }
             }
         }
@@ -91,8 +92,8 @@ public class DragArrow : MonoBehaviour
 
     void Shoot()
     {
-        //CameraController.instance.FollowCamera();
-        bottleScript.GetComponent<BottleCapController>().isCreate = true;
+        bottle.GetComponent<BottleCapController>().isCreate = true;
+        CameraController.instance.FollowCamera(bottle.transform);
         //드래그한 값을 빼서 넣어줌
         Vector3 dragVector = dragEndPos - dragStartPos;
         //드래그한 값의 x, y축 좌표를 가져와줌
@@ -100,7 +101,6 @@ public class DragArrow : MonoBehaviour
 
         //x * 힘만큼 앞으로 이동
         rigd.AddForce(vec * power * -1);
-        isTrigger = true;
 
         //한 번 날리면 화살표 안 보이게
         canvas.gameObject.SetActive(false);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gamemanager : MonoBehaviour
 {
     public GameObject bottlePrefab;
+
     public static Gamemanager instance;
     private static Gamemanager Instance
     {
@@ -33,7 +34,7 @@ public class Gamemanager : MonoBehaviour
 
     public void CreateBottle()
     {
-        Instantiate(bottlePrefab, new Vector3(4.3f, 0.88f, 0.31f), Quaternion.Euler(-90, 0, 0));
+       Instantiate(bottlePrefab, new Vector3(4.3f, 0.88f, 0.31f), Quaternion.Euler(-90, 0, 0));
     }
     public void DecreaseHp()
     {

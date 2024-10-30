@@ -11,6 +11,8 @@ public class BottleCapController : MonoBehaviour
     bool isStay = false;
     public bool isCreate = false;
 
+    public GameObject bottlePrefab;
+
 
     private void Start()
     {
@@ -19,6 +21,8 @@ public class BottleCapController : MonoBehaviour
 
     void Update()
     {
+        //병뚜껑의 속도 파악
+        float speed = rigidbody.velocity.magnitude;
 
     }
 
@@ -51,7 +55,11 @@ public class BottleCapController : MonoBehaviour
             {
                 isCreate = false;
                 //병뚜껑을 같은 위치에 하나 생성
-                Instantiate(gameObject, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
+                GameObject currentBottle=Instantiate(bottlePrefab, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
+
+                //나중에 고치기(너무빨리날라감)
+                Vector3 direction = rigidbody.velocity; 
+                currentBottle.GetComponent<Rigidbody>().AddForce(direction/100); 
             }
             if (selectText.text == "+속도")
             {

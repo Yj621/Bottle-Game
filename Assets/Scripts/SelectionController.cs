@@ -22,7 +22,6 @@ public class SelectionController : MonoBehaviour
         for (int i = 0; i < list.Count; i++)
         {
             int random = Random.Range(0, 4);
-            Debug.Log(random);
             text[i].text = list[random];
         }
     }
