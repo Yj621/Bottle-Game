@@ -52,6 +52,8 @@ public class Distance : MonoBehaviour
             Distance *= 2;
             Score += (float)Math.Round(Distance, 2);
         }
+        PlayerPrefs.SetFloat("currentScore", Score);
+        PlayerPrefs.Save();
     }
 
     public void CalScore()
