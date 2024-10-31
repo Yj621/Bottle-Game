@@ -80,7 +80,7 @@ public class DragArrow : MonoBehaviour
                 {
                     //쏘고 나서 병뚜껑이 안 움직일때 다음 병뚜껑 생성
                     //(아직 안 함)
-                    Invoke("Create", 3f);
+                    Invoke("Create", 1.5f);
                 }
             }
         }
@@ -88,6 +88,7 @@ public class DragArrow : MonoBehaviour
     void Create()
     {
         Gamemanager.instance.CreateBottle();
+        CameraController.instance.ReturnCamera();
     }
 
     void Shoot()

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class BottleCapController : MonoBehaviour
 {
-    public float power = 10f;
     Rigidbody rigidbody;
+
+    public float power = 10f;
 
     bool isStay = false;
     public bool isCreate = false;
@@ -23,8 +24,8 @@ public class BottleCapController : MonoBehaviour
     {
         //병뚜껑의 속도 파악
         float speed = rigidbody.velocity.magnitude;
-
     }
+
 
 
     private void OnTriggerExit(Collider other)
@@ -36,16 +37,22 @@ public class BottleCapController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Line"))
+        if (Gamemanager.instance.hp <= 0)
         {
-            isStay = true;
-            Invoke("Clear", 1f);
+            Invoke("Wait", 2f);
+            if (other.gameObject.CompareTag("Line"))
+            {
+                isStay = true;
+                Invoke("Clear", 1f);
+            }
+            if (!other.gameObject.CompareTag("Line"))
+            {
+                Debug.Log("Fail");
+                Invoke("Fail", 1f);
+            }
+            Distance.instance.DistanceLine();
         }
-        if (!other.gameObject.CompareTag("Line") && Gamemanager.instance.hp <= 0)
-        {
-            Debug.Log("Fail");
-            Invoke("Fail", 1f);
-        }
+
 
         if (other.gameObject.CompareTag("Selection"))
         {
@@ -55,11 +62,11 @@ public class BottleCapController : MonoBehaviour
             {
                 isCreate = false;
                 //병뚜껑을 같은 위치에 하나 생성
-                GameObject currentBottle=Instantiate(bottlePrefab, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
+                GameObject currentBottle = Instantiate(bottlePrefab, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
 
                 //나중에 고치기(너무빨리날라감)
-                Vector3 direction = rigidbody.velocity; 
-                currentBottle.GetComponent<Rigidbody>().AddForce(direction/100); 
+                Vector3 direction = rigidbody.velocity;
+                currentBottle.GetComponent<Rigidbody>().AddForce(direction / 100);
             }
             if (selectText.text == "+속도")
             {
@@ -81,7 +88,7 @@ public class BottleCapController : MonoBehaviour
     }
     public void Clear()
     {
-        if (isStay == true)
+        if (isStay == true && Gamemanager.instance.hp <= 0)
         {
             EndScript.instance.OnWinPanel();
         }
@@ -89,5 +96,8 @@ public class BottleCapController : MonoBehaviour
     public void Fail()
     {
         EndScript.instance.OnLosePanel();
+    }
+    public void Wait()
+    {
     }
 }
