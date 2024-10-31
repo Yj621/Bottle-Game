@@ -33,6 +33,6 @@ public class CameraController : MonoBehaviour
     {
         transform.SetParent(null);
         //카메라 다시 원상복구 위치
-        transform.position = new Vector3(4.6f, 1.25f, 0.29f);
+        transform.position = new Vector3(4.9f, 1.88f, 0.25f);
     }
 }

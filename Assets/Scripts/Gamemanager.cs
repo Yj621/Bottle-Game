@@ -51,7 +51,7 @@ public class Gamemanager : MonoBehaviour
 
     public void CreateBottle()
     {
-       Instantiate(bottlePrefab, new Vector3(4.3f, 0.88f, 0.31f), Quaternion.Euler(-90, 0, 0));
+       Instantiate(bottlePrefab, new Vector3(4.3f, 1.56f, 0.28f), Quaternion.Euler(-90, 0, 0));
     }
     public void DecreaseHp()
     {

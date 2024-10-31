@@ -148,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d579cbcfb9765a64abdd242f7d499cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 5
+  power: 3
+  isStay: 0
   isCreate: 0
   bottlePrefab: {fileID: 3910217200847153033, guid: 50dbd15fb93a30048a60a635d8473b5b, type: 3}
 --- !u!1 &4807066150815739533

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EndScript : MonoBehaviour
 {
+    public GameObject StartPanel;
     [SerializeField]
     private GameObject RankPanel;
     [SerializeField]

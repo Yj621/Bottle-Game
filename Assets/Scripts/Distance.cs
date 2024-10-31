@@ -60,6 +60,8 @@ public class Distance : MonoBehaviour
             }
             
         }
+        Debug.Log(Gamemanager.instance.bottleCount);
+
 /*        PlayerPrefs.SetFloat("currentScore", Score);
         PlayerPrefs.Save();*/
     }
