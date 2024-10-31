@@ -8,13 +8,15 @@ public class Distance : MonoBehaviour
 {
     public GameObject LineA;
     public GameObject LineB;
+    public GameObject[] player;
 
     private Vector3 LineBA;
     private Vector3 LineCA;
     public Vector3[] playerDist;
-    private float Score;
 
-    public GameObject[] player;
+    public float Score;
+    
+
 
     public static Distance instance;
     private static Distance Instance
@@ -51,12 +53,18 @@ public class Distance : MonoBehaviour
             float Distance = Vector3.Cross(LineCA, LineBA).magnitude / LineBA.magnitude;
             Distance *= 2;
             Score += (float)Math.Round(Distance, 2);
+
+            if(player[i].GetComponent<BottleCapController>().isStay)
+            {
+                Gamemanager.instance.bottleCount++;
+            }
+            
         }
-        PlayerPrefs.SetFloat("currentScore", Score);
-        PlayerPrefs.Save();
+/*        PlayerPrefs.SetFloat("currentScore", Score);
+        PlayerPrefs.Save();*/
     }
 
-    public void CalScore()
+    public void SaveScore()
     {
         
     }

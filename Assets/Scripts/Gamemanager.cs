@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
     public GameObject bottlePrefab;
+    public GameObject canvas;
+    public GameObject[] hp_img;
+
+    public int bottleCount = 0;
+
+    public int hp = 3;
+    private int currentHpIndex;
 
     public static Gamemanager instance;
     private static Gamemanager Instance
     {
         get { return instance; }
     }
-
-    public GameObject[] hp_img;
-    public int hp = 3;
-    private int currentHpIndex;
+    EndScript endScript;
 
     private void Awake()
     {
@@ -25,11 +30,23 @@ public class Gamemanager : MonoBehaviour
     {
         currentHpIndex = hp_img.Length - 1;
         CreateBottle();
+        endScript = canvas.GetComponent<EndScript>();
     }
 
     void Update()
     {
-        
+        //hp가 0이 됐을때 클리어함수로
+        if (hp == 0)
+        {
+            hp--;
+            StartCoroutine(ClearRoutine());
+        }
+    }
+
+    IEnumerator ClearRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        endScript.Clear();
     }
 
     public void CreateBottle()
@@ -44,6 +61,10 @@ public class Gamemanager : MonoBehaviour
             currentHpIndex--;
             hp--;
         }
+    }
+    public void OnClickRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

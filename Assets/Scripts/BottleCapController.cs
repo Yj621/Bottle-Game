@@ -9,7 +9,7 @@ public class BottleCapController : MonoBehaviour
 
     public float power = 10f;
 
-    bool isStay = false;
+    public bool isStay = false;
     public bool isCreate = false;
 
     public GameObject bottlePrefab;
@@ -24,8 +24,20 @@ public class BottleCapController : MonoBehaviour
     {
         //º´¶Ñ²±ÀÇ ¼Óµµ ÆÄ¾Ç
         float speed = rigidbody.velocity.magnitude;
+
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Line"))
+        {
+            isStay = true;
+        }
+        else
+        {
+            isStay = false;
+        }
+    }
 
 
     private void OnTriggerExit(Collider other)
@@ -37,22 +49,6 @@ public class BottleCapController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (Gamemanager.instance.hp <= 0)
-        {
-            Invoke("Wait", 2f);
-            if (other.gameObject.CompareTag("Line"))
-            {
-                isStay = true;
-                Invoke("Clear", 1f);
-            }
-            if (!other.gameObject.CompareTag("Line"))
-            {
-                Invoke("Fail", 1f);
-            }
-            Distance.instance.DistanceLine();
-        }
-
-
         if (other.gameObject.CompareTag("Selection"))
         {
             TextMeshProUGUI selectText = other.transform.parent.GetComponent<TextMeshProUGUI>();
@@ -85,18 +81,5 @@ public class BottleCapController : MonoBehaviour
             }
         }
     }
-    public void Clear()
-    {
-        if (isStay == true && Gamemanager.instance.hp <= 0)
-        {
-            EndScript.instance.OnWinPanel();
-        }
-    }
-    public void Fail()
-    {
-        EndScript.instance.OnLosePanel();
-    }
-    public void Wait()
-    {
-    }
+
 }
