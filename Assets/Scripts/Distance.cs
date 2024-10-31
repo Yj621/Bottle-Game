@@ -52,7 +52,6 @@ public class Distance : MonoBehaviour
             Distance *= 2;
             Score += (float)Math.Round(Distance, 2);
         }
-        Debug.Log("Score: " + Score);
     }
 
     public void CalScore()
