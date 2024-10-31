@@ -47,7 +47,6 @@ public class BottleCapController : MonoBehaviour
             }
             if (!other.gameObject.CompareTag("Line"))
             {
-                Debug.Log("Fail");
                 Invoke("Fail", 1f);
             }
             Distance.instance.DistanceLine();
