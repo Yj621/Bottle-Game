@@ -67,4 +67,8 @@ public class Gamemanager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void OnClickHome()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }

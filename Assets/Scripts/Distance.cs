@@ -14,8 +14,10 @@ public class Distance : MonoBehaviour
     private Vector3 LineCA;
     public Vector3[] playerDist;
 
+    public string result;
+
     public float Score;
-    
+
 
 
     public static Distance instance;
@@ -37,10 +39,10 @@ public class Distance : MonoBehaviour
     {
     }
 
-    //°Å¸®±¸ÇÏ´Â ÇÔ¼ö
+    //ê±°ë¦¬êµ¬í•˜ëŠ” í•¨ìˆ˜
     public void DistanceLine()
     {
-        //BottleÀ» ÅÂ±×·Î Ã£¾Æ¼­ ¹è¿­·Î ¸¸µé¾îÁÜ
+        //Bottleì„ íƒœê·¸ë¡œ ì°¾ì•„ì„œ ë°°ì—´ë¡œ ë§Œë“¤ì–´ì¤Œ
         player = GameObject.FindGameObjectsWithTag("Bottle");
         playerDist = new Vector3[player.Length];
 
@@ -49,63 +51,71 @@ public class Distance : MonoBehaviour
             playerDist[i] = player[i].transform.position;
             LineCA = playerDist[i] - LineA.transform.position;
 
-            // Vector3.Cross ¿ÜÀû °ª ±¸ÇÏ±â (¼öÁ÷ÀÎ°ª ±¸ÇÏ±â : º´¶Ñ²±°ú ¼±ÀÇ °Å¸®)
+            // Vector3.Cross ì™¸ì  ê°’ êµ¬í•˜ê¸° (ìˆ˜ì§ì¸ê°’ êµ¬í•˜ê¸° : ë³‘ëšœê»‘ê³¼ ì„ ì˜ ê±°ë¦¬)
             float Distance = Vector3.Cross(LineCA, LineBA).magnitude / LineBA.magnitude;
             Distance *= 2;
             Score += (float)Math.Round(Distance, 2);
 
-            if(player[i].GetComponent<BottleCapController>().isStay)
+            if (player[i].GetComponent<BottleCapController>().isStay)
             {
                 Gamemanager.instance.bottleCount++;
             }
-            
+
         }
         SaveScore();
     }
 
     public void SaveScore()
     {
-        float highScore = PlayerPrefs.GetFloat("highScore", 0);
-        if(Score > highScore)
+        float highScore = PlayerPrefs.GetFloat("highScore", 200);
+        if (Score < highScore)
         {
             PlayerPrefs.SetFloat("highScore", Score);
             PlayerPrefs.Save();
         }
 
-        string currentScoreString = Score.ToString();
-        string savedScoreString = PlayerPrefs.GetString("highScore", "");
+        string currentScoreString = Score.ToString("#.##");
+        string savedScoreString = PlayerPrefs.GetString("HighScores", "");
 
-        if(savedScoreString == "")
+        if (savedScoreString == "")
         {
-            PlayerPrefs.SetString("highScore", currentScoreString);
+            PlayerPrefs.SetString("HighScores", currentScoreString);
         }
         else
         {
             string[] scoreArray = savedScoreString.Split(',');
             List<string> scoreList = new List<string>(scoreArray);
 
-            for(int i =0; i< scoreList.Count; i++)
+            for (int i = 0; i < scoreList.Count; i++)
             {
-                float savedScore = float.Parse(scoreList[i]);   
-                
-                if(savedScore < Score)
+
+                float savedScore = float.Parse(scoreList[i]);
+
+                //ë‚˜ë³´ë‹¤ ì‘ì€ ì ìˆ˜ê°€ ë“¤ì–´ì˜¤ë©´
+                if (savedScore > Score)
                 {
-                    scoreList.Insert(i, currentScoreString);
+                    scoreList.Insert(i, currentScoreString); //ë’¤ë¡œ ë¯¼ë‹¤
                     break;
                 }
             }
-            if(scoreArray.Length == scoreList.Count)
+            if (scoreArray.Length == scoreList.Count) //ì ì ˆí•œ ìœ„ì¹˜ë¥¼ ëª» ì°¾ìœ¼ë©´ ì œì¼ ê¼´ì°Œë¡œ
             {
                 scoreList.Add(currentScoreString);
             }
-            if(scoreList.Count > 3)
+            if (scoreList.Count > 3)
             {
                 scoreList.RemoveAt(3);
             }
             string result = string.Join(",", scoreList);
-            Debug.Log(result);
-            PlayerPrefs.SetString("highScore", result);
+           
+            PlayerPrefs.SetString("HighScores", result);
+            
+            for (int i = 0; i < scoreList.Count; i++)
+            {
+                EndScript.instance.RankText[i].text = scoreList[i].ToString();
+            }
         }
+
 
     }
 }

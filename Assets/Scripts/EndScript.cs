@@ -32,9 +32,11 @@ public class EndScript : MonoBehaviour
 
     [SerializeField]
     private TMP_Text titleText;
+
     [SerializeField]
     private TMP_Text ScoreText;
 
+    public TMP_Text[] RankText;
     BottleCapController bottleScript;
 
     private static EndScript Instance
@@ -48,6 +50,10 @@ public class EndScript : MonoBehaviour
     void Start()
     {
         bottleScript = FindAnyObjectByType<BottleCapController>();
+        for (int i = 0; i<RankText.Length; i++)
+        {
+            RankText[i].text = "--";
+        } 
     }
 
     void Update()
@@ -72,7 +78,7 @@ public class EndScript : MonoBehaviour
         ResultPanel.SetActive(false);
     }
 
-    public void Clear()
+    public void Clear() 
     {
         Distance.instance.DistanceLine();
         if (Gamemanager.instance.bottleCount > 0)

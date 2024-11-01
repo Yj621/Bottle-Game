@@ -22,7 +22,7 @@ public class BottleCapController : MonoBehaviour
 
     void Update()
     {
-        //º´¶Ñ²±ÀÇ ¼Óµµ ÆÄ¾Ç
+        //???? ?? ??
         float speed = rigidbody.velocity.magnitude;
 
     }
@@ -53,29 +53,29 @@ public class BottleCapController : MonoBehaviour
         {
             TextMeshProUGUI selectText = other.transform.parent.GetComponent<TextMeshProUGUI>();
 
-            if (selectText.text == "º´¶Ñ²± °³¼ö+1" && isCreate == true)
+            if (selectText.text == "??? ??+1" && isCreate == true)
             {
                 isCreate = false;
-                //º´¶Ñ²±À» °°Àº À§Ä¡¿¡ ÇÏ³ª »ý¼º
+                //???? ?? ??? ?? ??
                 GameObject currentBottle = Instantiate(bottlePrefab, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
 
-                //³ªÁß¿¡ °íÄ¡±â(³Ê¹«»¡¸®³¯¶ó°¨)
+                //??? ???(???????)
                 Vector3 direction = rigidbody.velocity;
                 currentBottle.GetComponent<Rigidbody>().AddForce(direction / 100);
             }
-            if (selectText.text == "+¼Óµµ")
+            if (selectText.text == "+??")
             {
                 Vector3 direction = rigidbody.velocity;
 
-                //¾ÕÀ¸·Î ÈûÀ» ÁÜ
+                //??? ?? ?
                 rigidbody.AddForce(direction.normalized * 0.1f);
 
             }
-            if (selectText.text == "+¸¶Âû·Â")
+            if (selectText.text == "+???")
             {
                 rigidbody.drag += 5;
             }
-            if (selectText.text == "-¸¶Âû·Â")
+            if (selectText.text == "-???")
             {
                 rigidbody.drag /= 2;
             }

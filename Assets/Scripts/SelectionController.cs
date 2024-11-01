@@ -16,7 +16,7 @@ public class SelectionController : MonoBehaviour
     }
     void Start()
     {
-        List<string> list = new List<string>() { "º´¶Ñ²± °³¼ö+1", "+¼Óµµ", "+¸¶Âû·Â", "-¸¶Âû·Â" };
+        List<string> list = new List<string>() { "??? ??+1", "+??", "+???", "-???"};
 
 
         for (int i = 0; i < list.Count; i++)
