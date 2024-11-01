@@ -60,14 +60,52 @@ public class Distance : MonoBehaviour
             }
             
         }
-        Debug.Log(Gamemanager.instance.bottleCount);
-
-/*        PlayerPrefs.SetFloat("currentScore", Score);
-        PlayerPrefs.Save();*/
+        SaveScore();
     }
 
     public void SaveScore()
     {
-        
+        float highScore = PlayerPrefs.GetFloat("highScore", 0);
+        if(Score > highScore)
+        {
+            PlayerPrefs.SetFloat("highScore", Score);
+            PlayerPrefs.Save();
+        }
+
+        string currentScoreString = Score.ToString();
+        string savedScoreString = PlayerPrefs.GetString("highScore", "");
+
+        if(savedScoreString == "")
+        {
+            PlayerPrefs.SetString("highScore", currentScoreString);
+        }
+        else
+        {
+            string[] scoreArray = savedScoreString.Split(',');
+            List<string> scoreList = new List<string>(scoreArray);
+
+            for(int i =0; i< scoreList.Count; i++)
+            {
+                float savedScore = float.Parse(scoreList[i]);   
+                
+                if(savedScore < Score)
+                {
+                    scoreList.Insert(i, currentScoreString);
+                    break;
+                }
+            }
+            if(scoreArray.Length == scoreList.Count)
+            {
+                scoreList.Add(currentScoreString);
+            }
+            if(scoreList.Count > 3)
+            {
+                scoreList.RemoveAt(3);
+            }
+            string result = string.Join(",", scoreList);
+            Debug.Log(result);
+            PlayerPrefs.SetString("highScore", result);
+        }
+
     }
 }
