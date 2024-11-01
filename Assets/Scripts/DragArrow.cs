@@ -7,6 +7,7 @@ public class DragArrow : MonoBehaviour
 {
     public Rigidbody rigd;
     private Camera cam;
+    public AudioSource bottleHitSound;
     public GameObject arrow;
     public GameObject canvas;
 
@@ -82,6 +83,7 @@ public class DragArrow : MonoBehaviour
                     //(아직 안 함)
                     Invoke("Create", 1.5f);
                 }
+
             }
         }
     }
@@ -93,6 +95,7 @@ public class DragArrow : MonoBehaviour
 
     void Shoot()
     {
+        bottleHitSound.Play();
         bottle.GetComponent<BottleCapController>().isCreate = true;
         CameraController.instance.FollowCamera(bottle.transform);
         //드래그한 값을 빼서 넣어줌

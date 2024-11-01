@@ -22,7 +22,7 @@ public class BottleCapController : MonoBehaviour
 
     void Update()
     {
-        //???? ?? ??
+        //병뚜껑의 속도 파악
         float speed = rigidbody.velocity.magnitude;
 
     }
@@ -53,29 +53,29 @@ public class BottleCapController : MonoBehaviour
         {
             TextMeshProUGUI selectText = other.transform.parent.GetComponent<TextMeshProUGUI>();
 
-            if (selectText.text == "??? ??+1" && isCreate == true)
+            if (selectText.text == "병뚜껑 개수+1" && isCreate == true)
             {
                 isCreate = false;
-                //???? ?? ??? ?? ??
+                //병뚜껑을 같은 위치에 하나 생성
                 GameObject currentBottle = Instantiate(bottlePrefab, gameObject.transform.position, Quaternion.Euler(-90, 0, 0));
 
-                //??? ???(???????)
+                //나중에 고치기(너무빨리날라감)
                 Vector3 direction = rigidbody.velocity;
                 currentBottle.GetComponent<Rigidbody>().AddForce(direction / 100);
             }
-            if (selectText.text == "+??")
+            if (selectText.text == "+속도")
             {
                 Vector3 direction = rigidbody.velocity;
 
-                //??? ?? ?
+                //앞으로 힘을 줌
                 rigidbody.AddForce(direction.normalized * 0.1f);
 
             }
-            if (selectText.text == "+???")
+            if (selectText.text == "+마찰력")
             {
                 rigidbody.drag += 5;
             }
-            if (selectText.text == "-???")
+            if (selectText.text == "-마찰력")
             {
                 rigidbody.drag /= 2;
             }

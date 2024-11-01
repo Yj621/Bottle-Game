@@ -16,7 +16,7 @@ public class SelectionController : MonoBehaviour
     }
     void Start()
     {
-        List<string> list = new List<string>() { "??? ??+1", "+??", "+???", "-???"};
+        List<string> list = new List<string>() { "병뚜껑 개수+1", "+속도", "+마찰력", "-마찰력"};
 
 
         for (int i = 0; i < list.Count; i++)

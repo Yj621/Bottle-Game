@@ -18,7 +18,7 @@ public class Distance : MonoBehaviour
 
     public float Score;
 
-
+    float savedScore;
 
     public static Distance instance;
     private static Distance Instance
@@ -88,8 +88,7 @@ public class Distance : MonoBehaviour
 
             for (int i = 0; i < scoreList.Count; i++)
             {
-
-                float savedScore = float.Parse(scoreList[i]);
+                savedScore = float.Parse(scoreList[i]);
 
                 //나보다 작은 점수가 들어오면
                 if (savedScore > Score)
@@ -107,9 +106,9 @@ public class Distance : MonoBehaviour
                 scoreList.RemoveAt(3);
             }
             string result = string.Join(",", scoreList);
-           
+
             PlayerPrefs.SetString("HighScores", result);
-            
+
             for (int i = 0; i < scoreList.Count; i++)
             {
                 EndScript.instance.RankText[i].text = scoreList[i].ToString();
