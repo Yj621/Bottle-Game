@@ -31,8 +31,8 @@ public class DragArrow : MonoBehaviour
     {
         if (Gamemanager.instance.hp > 0)
         {
-            //¸¶¿ì½º ´©¸£±â ½ÃÀÛÇßÀ»¶§
-            //Start Pos ¹İÈ¯
+            //ë§ˆìš°ìŠ¤ ëˆ„ë¥´ê¸° ì‹œì‘í–ˆì„ë•Œ
+            //Start Pos ë°˜í™˜
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 mousePos = Input.mousePosition;
@@ -40,17 +40,17 @@ public class DragArrow : MonoBehaviour
                 dragStartPos = cam.ScreenToWorldPoint(mousePos);
             }
 
-            //¸¶¿ì½º ´©¸£°í ÀÖÀ»¶§
+            //ë§ˆìš°ìŠ¤ ëˆ„ë¥´ê³  ìˆì„ë•Œ
             if (Input.GetMouseButton(0))
             {
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = cam.WorldToScreenPoint(transform.position).z;
                 dragPos = cam.ScreenToWorldPoint(mousePos);
 
-                //µå·¡±× °Å¸® °è»ê
+                //ë“œë˜ê·¸ ê±°ë¦¬ ê³„ì‚°
                 float dragDistance = Vector3.Distance(dragStartPos, dragPos);
 
-                //arrowHeightÀ»(dragDistance * 1000À» °öÇÑ °ªÀÌ) ÃÖ¼Ò°ªº¸´Ù ÀÛÀ¸¸é min, ÃÖ´ë°ªº¸´Ù Å©¸é maxÀ» ¹İÈ¯
+                //arrowHeightì„(dragDistance * 1000ì„ ê³±í•œ ê°’ì´) ìµœì†Œê°’ë³´ë‹¤ ì‘ìœ¼ë©´ min, ìµœëŒ€ê°’ë³´ë‹¤ í¬ë©´ maxì„ ë°˜í™˜
                 float arrowHeight = Mathf.Clamp(dragDistance * 5000f, arrowMinHeight, arrowMaxHeight);
                 RectTransform rectTransform = arrow.GetComponent<RectTransform>();
                 rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, arrowHeight);
@@ -59,13 +59,13 @@ public class DragArrow : MonoBehaviour
                 if (dragDirection != Vector3.zero)
                 {
                     // LookRotation(Vector3 forward, Vector3 upwards, Vector3 up)
-                    // ÇØ´ç ¿ÀºêÁ§Æ®°¡ Vector3 ¹æÇâÀ¸·Î ÇâÇÏ°Ô²û ÇØÁØ´Ù
+                    // í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ Vector3 ë°©í–¥ìœ¼ë¡œ í–¥í•˜ê²Œë” í•´ì¤€ë‹¤
                     arrow.transform.rotation = Quaternion.LookRotation(new Vector3(dragDirection.x, 3, dragDirection.z));
                 }
             }
 
-            //¸¶¿ì½º¸¦ ¶ÃÀ»¶§
-            //End Pos ¹İÈ¯
+            //ë§ˆìš°ìŠ¤ë¥¼ ë—ì„ë•Œ
+            //End Pos ë°˜í™˜
             if (Input.GetMouseButtonUp(0) && Gamemanager.instance.hp > 0)
             {
                 Vector3 mousePos = Input.mousePosition;
@@ -76,11 +76,11 @@ public class DragArrow : MonoBehaviour
                 Shoot();
                 Gamemanager.instance.DecreaseHp();
 
-                // DecreaseHp() È£Ãâ ÈÄ hp¸¦ ´Ù½Ã Ã¼Å©
+                // DecreaseHp() í˜¸ì¶œ í›„ hpë¥¼ ë‹¤ì‹œ ì²´í¬
                 if (Gamemanager.instance.hp > 0)
                 {
-                    //½î°í ³ª¼­ º´¶Ñ²±ÀÌ ¾È ¿òÁ÷ÀÏ¶§ ´ÙÀ½ º´¶Ñ²± »ı¼º
-                    //(¾ÆÁ÷ ¾È ÇÔ)
+                    //ì˜ê³  ë‚˜ì„œ ë³‘ëšœê»‘ì´ ì•ˆ ì›€ì§ì¼ë•Œ ë‹¤ìŒ ë³‘ëšœê»‘ ìƒì„±
+                    //(ì•„ì§ ì•ˆ í•¨)
                     Invoke("Create", 1.5f);
                 }
 
@@ -98,15 +98,15 @@ public class DragArrow : MonoBehaviour
         bottleHitSound.Play();
         bottle.GetComponent<BottleCapController>().isCreate = true;
         CameraController.instance.FollowCamera(bottle.transform);
-        //µå·¡±×ÇÑ °ªÀ» »©¼­ ³Ö¾îÁÜ
+        //ë“œë˜ê·¸í•œ ê°’ì„ ë¹¼ì„œ ë„£ì–´ì¤Œ
         Vector3 dragVector = dragEndPos - dragStartPos;
-        //µå·¡±×ÇÑ °ªÀÇ x, yÃà ÁÂÇ¥¸¦ °¡Á®¿ÍÁÜ
+        //ë“œë˜ê·¸í•œ ê°’ì˜ x, yì¶• ì¢Œí‘œë¥¼ ê°€ì ¸ì™€ì¤Œ
         Vector3 vec = new Vector3(dragVector.x, 0, dragVector.z);
 
-        //x * Èû¸¸Å­ ¾ÕÀ¸·Î ÀÌµ¿
+        //x * í˜ë§Œí¼ ì•ìœ¼ë¡œ ì´ë™
         rigd.AddForce(vec * power * -1);
 
-        //ÇÑ ¹ø ³¯¸®¸é È­»ìÇ¥ ¾È º¸ÀÌ°Ô
+        //í•œ ë²ˆ ë‚ ë¦¬ë©´ í™”ì‚´í‘œ ì•ˆ ë³´ì´ê²Œ
         canvas.gameObject.SetActive(false);
     }
 

@@ -35,7 +35,7 @@ public class Gamemanager : MonoBehaviour
 
     void Update()
     {
-        //hp°¡ 0ÀÌ µÆÀ»¶§ Å¬¸®¾îÇÔ¼ö·Î
+        //hpê°€ 0ì´ ëì„ë•Œ í´ë¦¬ì–´í•¨ìˆ˜ë¡œ
         if (hp == 0)
         {
             hp--;

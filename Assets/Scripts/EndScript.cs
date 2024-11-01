@@ -94,16 +94,16 @@ public class EndScript : MonoBehaviour
     public void Win()
     {
         OnResultPanel();
-        //Á¦¸ñ º¯°æ
+        //ì œëª© ë³€ê²½
         titleText.text = "YOU WIN";
 
-        //½ºÄÚ¾î Ç¥½Ã
+        //ìŠ¤ì½”ì–´ í‘œì‹œ
         ScoreText.text = Distance.instance.Score.ToString();
 
-        //µÚ¿¡ È¿°ú Ç¥Çö
+        //ë’¤ì— íš¨ê³¼ í‘œí˜„
         Effect.SetActive(true);
 
-        //º° ³ªÅ¸³ª°Ô
+        //ë³„ ë‚˜íƒ€ë‚˜ê²Œ
         for (int i = 0; i < Star.Length; i++)
         {
             Star[i].SetActive(true);
@@ -114,39 +114,39 @@ public class EndScript : MonoBehaviour
 
         for (int i = 0; i < BottleSuccess.Length; i++)
         {
-            //ÃÊ±â´Â ¸ğµÎ x·Î
+            //ì´ˆê¸°ëŠ” ëª¨ë‘ xë¡œ
             BottleSuccess[i].sprite = XImg;
         }
 
         for (int i = 0; i < Math.Min(Gamemanager.instance.bottleCount, 3); i++)
         {
-            //º´¶Ñ²±À» ¼± ¾È¿¡ ¸ÂÃß¸é °³¼ö¸¸Å­ ÇÏÆ®·Î ¹Ù²ñ
+            //ë³‘ëšœê»‘ì„ ì„  ì•ˆì— ë§ì¶”ë©´ ê°œìˆ˜ë§Œí¼ í•˜íŠ¸ë¡œ ë°”ë€œ
             BottleSuccess[i].sprite = HeartImg;
         }
     }
     public void Lose()
     {
         OnResultPanel();
-        //Á¦¸ñ º¯°æ
+        //ì œëª© ë³€ê²½
         titleText.text = "YOU LOSE";
 
-        //½ºÄÚ¾î Ç¥½Ã
+        //ìŠ¤ì½”ì–´ í‘œì‹œ
         ScoreText.text = Distance.instance.Score.ToString();
 
-        //µÚ¿¡ È¿°ú Ç¥Çö
+        //ë’¤ì— íš¨ê³¼ í‘œí˜„
         Effect.SetActive(false);
 
-        //º° »ç¶óÁö°Ô
+        //ë³„ ì‚¬ë¼ì§€ê²Œ
         for (int i = 0; i < Star.Length - 1; i++)
         {
             Star[i].SetActive(false);
         }
 
-        //ÇØ°ñ ÀÌ¹ÌÁö·Î º¯°æ
+        //í•´ê³¨ ì´ë¯¸ì§€ë¡œ ë³€ê²½
         changeImg = Star[2].GetComponent<Image>();
         changeImg.sprite = FailImg;
 
-        //º´¶Ñ²±À» ¼± ¾È¿¡ ¾Æ¹«°Íµµ ¸ø ¸ÂÃèÀ¸´Ï X ÀÌ¹ÌÁö·Î º¯°æ
+        //ë³‘ëšœê»‘ì„ ì„  ì•ˆì— ì•„ë¬´ê²ƒë„ ëª» ë§ì·„ìœ¼ë‹ˆ X ì´ë¯¸ì§€ë¡œ ë³€ê²½
         for (int i = 0; i < BottleSuccess.Length; i++)
         {
             BottleSuccess[i].sprite = XImg;

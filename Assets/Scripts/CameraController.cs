@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
     public void ReturnCamera()
     {
         transform.SetParent(null);
-        //Ä«¸Ş¶ó ´Ù½Ã ¿ø»óº¹±¸ À§Ä¡
+        //ì¹´ë©”ë¼ ë‹¤ì‹œ ì›ìƒë³µêµ¬ ìœ„ì¹˜
         transform.position = new Vector3(4.9f, 1.88f, 0.25f);
     }
 }
