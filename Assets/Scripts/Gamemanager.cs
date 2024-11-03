@@ -71,4 +71,8 @@ public class Gamemanager : MonoBehaviour
     {
         SceneManager.LoadScene("StartScene");
     }
+    public void OnClickQuit()
+    {
+        Application.Quit();
+    }
 }

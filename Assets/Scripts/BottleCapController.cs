@@ -61,7 +61,7 @@ public class BottleCapController : MonoBehaviour
 
                 //나중에 고치기(너무빨리날라감)
                 Vector3 direction = rigidbody.velocity;
-                currentBottle.GetComponent<Rigidbody>().AddForce(direction / 100);
+                currentBottle.GetComponent<Rigidbody>().AddForce(direction/30);
             }
             if (selectText.text == "+속도")
             {
