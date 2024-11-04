@@ -15,8 +15,8 @@ public class Distance : MonoBehaviour
     public Vector3[] playerDist;
 
     public string result;
-
-    public float Score;
+    
+    public float minScore = 100.0f;
 
     float savedScore;
 
@@ -46,6 +46,7 @@ public class Distance : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Bottle");
         playerDist = new Vector3[player.Length];
 
+
         for (int i = 0; i < player.Length; i++)
         {
             playerDist[i] = player[i].transform.position;
@@ -53,8 +54,10 @@ public class Distance : MonoBehaviour
 
             // Vector3.Cross 외적 값 구하기 (수직인값 구하기 : 병뚜껑과 선의 거리)
             float Distance = Vector3.Cross(LineCA, LineBA).magnitude / LineBA.magnitude;
-            Distance *= 2;
-            Score += (float)Math.Round(Distance, 2);
+            Distance *= 20;
+            float score = (float)Math.Round(Distance, 2);
+
+            minScore = Mathf.Min(score, minScore);
 
             if (player[i].GetComponent<BottleCapController>().isStay)
             {
@@ -68,13 +71,13 @@ public class Distance : MonoBehaviour
     public void SaveScore()
     {
         float highScore = PlayerPrefs.GetFloat("highScore", 200);
-        if (Score < highScore)
+        if (minScore < highScore)
         {
-            PlayerPrefs.SetFloat("highScore", Score);
+            PlayerPrefs.SetFloat("highScore", minScore);
             PlayerPrefs.Save();
         }
 
-        string currentScoreString = Score.ToString("#.##");
+        string currentScoreString = minScore.ToString("#.##");
         string savedScoreString = PlayerPrefs.GetString("HighScores", "");
 
         if (savedScoreString == "")
@@ -91,7 +94,7 @@ public class Distance : MonoBehaviour
                 savedScore = float.Parse(scoreList[i]);
 
                 //나보다 작은 점수가 들어오면
-                if (savedScore > Score)
+                if (savedScore > minScore)
                 {
                     scoreList.Insert(i, currentScoreString); //뒤로 민다
                     break;

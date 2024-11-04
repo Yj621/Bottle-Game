@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 1444196188051070338}
   - component: {fileID: 6322150361855351047}
   - component: {fileID: 4949673147458993497}
+  - component: {fileID: 3034241887657441418}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -308,8 +309,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 55654531
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6322150361855351047
 MonoBehaviour:
@@ -351,6 +352,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &3034241887657441418
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4807066150815739533}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &7768310733259812993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -677,9 +690,11 @@ MonoBehaviour:
   bottleHitSound: {fileID: 6156715647761863073}
   arrow: {fileID: 8704933703191670664}
   canvas: {fileID: 4807066150815739533}
+  a: 0
   power: 10
   arrowMinHeight: 150
   arrowMaxHeight: 300
+  maxPower: 10
   bottle: {fileID: 3910217200847153033}
 --- !u!224 &8704933703731718605 stripped
 RectTransform:

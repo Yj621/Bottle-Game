@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class EndScript : MonoBehaviour
 {
-    public GameObject StartPanel;
     [SerializeField]
     private GameObject RankPanel;
     [SerializeField]
@@ -94,11 +93,12 @@ public class EndScript : MonoBehaviour
     public void Win()
     {
         OnResultPanel();
+        Audios.instance.SuccessSound();
         //제목 변경
         titleText.text = "YOU WIN";
 
         //스코어 표시
-        ScoreText.text = Distance.instance.Score.ToString();
+        ScoreText.text = Distance.instance.minScore.ToString();
 
         //뒤에 효과 표현
         Effect.SetActive(true);
@@ -127,11 +127,12 @@ public class EndScript : MonoBehaviour
     public void Lose()
     {
         OnResultPanel();
+        Audios.instance.FailSound();
         //제목 변경
         titleText.text = "YOU LOSE";
 
         //스코어 표시
-        ScoreText.text = Distance.instance.Score.ToString();
+        ScoreText.text = Distance.instance.minScore.ToString();
 
         //뒤에 효과 표현
         Effect.SetActive(false);
