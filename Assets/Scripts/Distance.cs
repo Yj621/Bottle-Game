@@ -54,11 +54,12 @@ public class Distance : MonoBehaviour
 
             // Vector3.Cross 외적 값 구하기 (수직인값 구하기 : 병뚜껑과 선의 거리)
             float Distance = Vector3.Cross(LineCA, LineBA).magnitude / LineBA.magnitude;
-            Distance *= 20;
+            Distance *= 10;
             float score = (float)Math.Round(Distance, 2);
+            Debug.Log(Distance);
 
             minScore = Mathf.Min(score, minScore);
-
+            Debug.Log(minScore);
             if (player[i].GetComponent<BottleCapController>().isStay)
             {
                 Gamemanager.instance.bottleCount++;
