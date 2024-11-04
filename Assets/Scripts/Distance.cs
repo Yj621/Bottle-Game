@@ -56,10 +56,8 @@ public class Distance : MonoBehaviour
             float Distance = Vector3.Cross(LineCA, LineBA).magnitude / LineBA.magnitude;
             Distance *= 10;
             float score = (float)Math.Round(Distance, 2);
-            Debug.Log(Distance);
 
             minScore = Mathf.Min(score, minScore);
-            Debug.Log(minScore);
             if (player[i].GetComponent<BottleCapController>().isStay)
             {
                 Gamemanager.instance.bottleCount++;

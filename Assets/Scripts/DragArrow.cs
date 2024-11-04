@@ -98,7 +98,6 @@ public class DragArrow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             }
 
         }
-        Debug.Log(dragEndPos);
        
     }
 
