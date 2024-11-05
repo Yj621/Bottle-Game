@@ -61,7 +61,8 @@ public class EndScript : MonoBehaviour
     public void OnRankPanel()
     {
         RankPanel.SetActive(true);
-        Distance.instance.SaveScore();
+        Distance.instance.PrintScore();
+
     }
     public void OnResultPanel()
     {

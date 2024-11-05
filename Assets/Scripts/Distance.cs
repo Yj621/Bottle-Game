@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Distance : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class Distance : MonoBehaviour
     public Vector3[] playerDist;
 
     public string result;
-    
+
     public float minScore = 100.0f;
 
     float savedScore;
@@ -64,7 +62,11 @@ public class Distance : MonoBehaviour
             }
 
         }
-        SaveScore();
+        if (minScore < 100)
+        {
+            SaveScore();
+        }
+
     }
 
     public void SaveScore()
@@ -116,7 +118,19 @@ public class Distance : MonoBehaviour
                 EndScript.instance.RankText[i].text = scoreList[i].ToString();
             }
         }
+    }
+    public void PrintScore()
+    {
+        string savedScoreString = PlayerPrefs.GetString("HighScores", "");
 
-
+        if (string.IsNullOrEmpty(savedScoreString))
+        {
+            return;
+        }
+        string[] scoreArray = savedScoreString.Split(',');
+        for (int i = 0; i < scoreArray.Length; i++)
+        {
+            EndScript.instance.RankText[i].text = scoreArray[i].ToString();
+        }
     }
 }
