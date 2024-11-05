@@ -8,6 +8,11 @@
 
 이제 병뚜껑을 날려보세요!
 
+
+![Play](https://github.com/user-attachments/assets/6a2ec808-4936-47b6-a21a-fc60dcce0bf2)
+
+
+
 [다운로드 링크]
 
 https://drive.google.com/file/d/1lJ_TF3zNYtF21xYknEkN2GXrfPu430OR/view?usp=drive_link
