@@ -15,8 +15,9 @@
 
 [다운로드 링크]
 
-https://drive.google.com/file/d/1lJ_TF3zNYtF21xYknEkN2GXrfPu430OR/view?usp=drive_link
+[게임 다운로드](https://drive.google.com/file/d/1lJ_TF3zNYtF21xYknEkN2GXrfPu430OR/view?usp=drive_link)
 
 [플레이 영상]
+[![썸네일](https://github.com/user-attachments/assets/4c90d208-25a6-4f03-adc6-233a49a82899)
+](https://www.youtube.com/watch?v=TyH2P6zpHco)
 
-https://www.youtube.com/watch?v=TyH2P6zpHco
