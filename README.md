@@ -11,13 +11,40 @@
 
 ![Play](https://github.com/user-attachments/assets/6a2ec808-4936-47b6-a21a-fc60dcce0bf2)
 
+## 🛠️ 개발 환경
 
+---
 
-[다운로드 링크]
+<div align="center">
+
+### **언어 및 게임 엔진**
+
+</div>
+
+<br/>
+<p align="center">
+<img src="https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white">
+<img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white">
+
+</p>
+
+<div align="center">
+
+### **버전 및 이슈 관리**
+
+</div>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</p>
+
+## ⏩ 게임 실행 방법
 
 [게임 다운로드](https://drive.google.com/file/d/1lJ_TF3zNYtF21xYknEkN2GXrfPu430OR/view?usp=drive_link)
 
-[플레이 영상]
+## 🎞 플레이 영상
 [![썸네일](https://github.com/user-attachments/assets/4c90d208-25a6-4f03-adc6-233a49a82899)
 ](https://www.youtube.com/watch?v=TyH2P6zpHco)
 
